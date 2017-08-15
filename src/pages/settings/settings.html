@@ -17,8 +17,22 @@
   <ion-list>
     <h2>RSS Settings</h2>
 
-    <label for="url-rss">Ingresar la Url del RSS</label>
-    <input placeholder="URL RSS" id="url-rss" name="url-rss" />
-    <button (click)="openPage(p)">Guardar RSS</button>
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="Titulo RSS" id="title-rss" name="title-rss" ng-model="title"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item>
+          <ion-input placeholder="URL RSS" id="url-rss" name="url-rss" ng-model="url"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <button ng-click="saveRss()" ion-button>Guardar RSS</button>
+      </ion-row>
+    </ion-grid>
   </ion-list>
 </ion-content>

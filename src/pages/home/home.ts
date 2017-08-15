@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
+import { ModalContentPage } from "./modal-content";
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,37 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  items = [
+    {
+      title: 'URL 1 Prueba',
+      url: 'Sneaky little hobbitses!',
+      items: [
+        { title: 'Race', note: 'Hobbit' },
+        { title: 'Culture', note: 'River Folk' },
+        { title: 'Alter Ego', note: 'Smeagol' }
+      ]
+    },
+    {
+      title: 'RSS Sarasa',
+      url: 'Go back, Sam! I\'m going to Mordor alone!',
+      items: [
+        { title: 'Race', note: 'Hobbit' },
+        { title: 'Culture', note: 'Shire Folk' },
+        { title: 'Weapon', note: 'Sting' }
+      ]
+    }
+  ];
+
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
   }
 
+  openModal(item: string) {
+    console.log("Selected Item", item);
+    let modal = this.modalCtrl.create(ModalContentPage, item);
+    modal.present();
+  }
 }
+
+
+

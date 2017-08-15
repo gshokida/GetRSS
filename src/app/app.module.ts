@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ModalContentPage } from '../pages/home/modal-content';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { RssProvider } from '../providers/rss/rss';
     ContactPage,
     HomePage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    ModalContentPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { RssProvider } from '../providers/rss/rss';
     ContactPage,
     HomePage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    ModalContentPage
   ],
   providers: [
     StatusBar,
