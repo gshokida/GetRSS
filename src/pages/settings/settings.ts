@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { CategoryPage } from "./category";
+import { RssDataPage } from "./rss-data";
 
 /**
  * Generated class for the SettingsPage page.
@@ -15,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
 
+  openCategoryPage() {
+    let modal = this.modalCtrl.create(CategoryPage);
+    modal.present();
+  }
+
+  openRSSPage() {
+    let modal = this.modalCtrl.create(RssDataPage);
+    modal.present();
+  }
 }
