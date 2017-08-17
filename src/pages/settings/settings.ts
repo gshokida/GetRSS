@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { CategoryPage } from "./category";
+import { IonicPage, ModalController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { RssDataPage } from "./rss-data";
 
 /**
@@ -16,21 +16,35 @@ import { RssDataPage } from "./rss-data";
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+  public category;
+  public categories = Array<any>();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController, private storage: Storage) {
+  }
+
+  ngOnInit() {
+    this.categories = [];
+    this.storage.get('category').then((val) => {
+      this.categories = JSON.parse(val);
+    } );
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
 
-  openCategoryPage() {
-    let modal = this.modalCtrl.create(CategoryPage);
+  openRSSPage(categoryName: string) {
+    let modal = this.modalCtrl.create(RssDataPage, categoryName);
     modal.present();
   }
 
-  openRSSPage() {
-    let modal = this.modalCtrl.create(RssDataPage);
-    modal.present();
+  saveCategory() {
+    this.categories.push({ name : this.category, items : [] });
+    this.storage.set('category', JSON.stringify(this.categories));
+  }
+
+  deleteCategory(categoryName: string) {
+    this.categories = this.categories.filter(c => c.name != categoryName);
+    this.storage.set('category', JSON.stringify(this.categories));
   }
 }
