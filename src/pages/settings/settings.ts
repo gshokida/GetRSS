@@ -40,7 +40,9 @@ export class SettingsPage {
 
   saveCategory() {
     this.categories.push({ name : this.category, items : [] });
+    this.categories.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
     this.storage.set('category', JSON.stringify(this.categories));
+    this.category = "";
   }
 
   deleteCategory(categoryName: string) {

@@ -5,13 +5,13 @@ import { NavParams, ViewController } from 'ionic-angular';
   templateUrl: 'modal-content.html'
 })
 export class ModalContentPage {
-  character;
+  protected rss;
 
   constructor(
     public params: NavParams,
     public viewCtrl: ViewController
   ) {
-    this.character = this.params.get('data');
+    this.rss = this.params.get('rssData');
   }
 
   dismiss() {

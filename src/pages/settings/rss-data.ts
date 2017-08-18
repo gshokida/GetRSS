@@ -41,6 +41,7 @@ export class RssDataPage {
   saveRss() {
     let item = {title : this.title, url : this.url}
     this.category[0].items.push(item);
+    this.category[0].items.sort(function(a,b) {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} );
     this.storage.set('category', JSON.stringify(this.categories));
 
     this.title = "";

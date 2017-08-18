@@ -1,14 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>RSS</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to GetRSS!</h2>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="openModal({data: item})">
-      {{ item.title }}
-    </button>
+<ion-content>
+  <ion-list *ngFor="let c of categories">
+    <ion-item-divider color="light">{{ c.name }}</ion-item-divider>
+    <ion-item *ngFor="let rss of c.items" (click)="openModal({rssData : rss})">{{ rss.title }}</ion-item>
   </ion-list>
 </ion-content>

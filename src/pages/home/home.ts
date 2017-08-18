@@ -1,41 +1,28 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { ModalContentPage } from "./modal-content";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public categories = Array<any>();
 
-  items = [
-    {
-      title: 'URL 1 Prueba',
-      url: 'Sneaky little hobbitses!',
-      items: [
-        { title: 'Race', note: 'Hobbit' },
-        { title: 'Culture', note: 'River Folk' },
-        { title: 'Alter Ego', note: 'Smeagol' }
-      ]
-    },
-    {
-      title: 'RSS Sarasa',
-      url: 'Go back, Sam! I\'m going to Mordor alone!',
-      items: [
-        { title: 'Race', note: 'Hobbit' },
-        { title: 'Culture', note: 'Shire Folk' },
-        { title: 'Weapon', note: 'Sting' }
-      ]
-    }
-  ];
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController, private storage: Storage) {
 
   }
 
-  openModal(item: string) {
-    console.log("Selected Item", item);
-    let modal = this.modalCtrl.create(ModalContentPage, item);
+  ngOnInit() {
+    this.categories = [];
+    this.storage.get('category').then((val) => {
+      this.categories = JSON.parse(val);
+    } );
+  }
+
+  openModal(rssData: string) {
+    let modal = this.modalCtrl.create(ModalContentPage, rssData);
     modal.present();
   }
 }
