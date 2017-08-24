@@ -14,6 +14,7 @@ import { RssDataPage } from '../pages/settings/rss-data';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RssProvider } from '../providers/rss/rss';
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RssProvider } from '../providers/rss/rss';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
       name: '__mydb',
